@@ -18,4 +18,6 @@ public interface IPersonaService {
    public Persona updPersona(Persona per);
 
     public void savePersona(Persona persona);
+
+    public Persona findPersona(long l);
 }

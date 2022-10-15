@@ -4,6 +4,7 @@ package com.porfolioWeb.SpringBoot.service;
 import com.porfolioWeb.SpringBoot.model.Persona;
 import com.porfolioWeb.SpringBoot.repository.PersonaRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,14 @@ public class PersonaService implements IPersonaService {
     public void savePersona(Persona per) {
         persoRepo.save(per);
     }
+
+    @Override
+    public Persona findPersona(long l) {
+        return persoRepo.findById(l).orElse(null);
+   
+    }
+
+  
     
     
 }
