@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("explab")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://frontendelisolesc.web.app")
 public class CExperiencia {
     @Autowired
     SExperiencia sExperiencia;
     
     @GetMapping("/lista")
-    //@CrossOrigin(origins = "http://localhost:4200")
+    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<List<Experiencia>> list(){
         List<Experiencia> list = sExperiencia.list();
         return new ResponseEntity(list, HttpStatus.OK);
@@ -39,7 +39,7 @@ public class CExperiencia {
     
    
     @PostMapping("/create")
-    //@CrossOrigin(origins = "http://localhost:4200")
+    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<?> create (@RequestBody dtoExperiencia dtoexp){
         if(StringUtils.isBlank(dtoexp.getNombreE())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -55,7 +55,7 @@ public class CExperiencia {
     }
     
     @PutMapping("/update/{id}")
-    //@CrossOrigin(origins = "http://localhost:4200")
+    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody dtoExperiencia dtoexp){
         //valido si existe el ID
         if(!sExperiencia.existsById(id)){
@@ -92,7 +92,7 @@ public class CExperiencia {
     }
     
     @GetMapping("/detail/{id}")
-    //@CrossOrigin(origins = "http://localhost:4200")
+    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<Experiencia> getById(@PathVariable("id") int id){
         if(!sExperiencia.existsById(id)){
            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.BAD_REQUEST);
