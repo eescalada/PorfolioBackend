@@ -40,7 +40,7 @@ public class CHys {
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-   @PreAuthorize("hasRole('ADMIN')")
+   //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<?> create (@RequestBody dtoHys dtohys){
@@ -57,7 +57,7 @@ public class CHys {
         return new ResponseEntity(new Mensaje("Skill agregada"), HttpStatus.OK);
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody dtoHys dtohys){
@@ -83,7 +83,7 @@ public class CHys {
        
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete (@PathVariable("id") int id){
         //valido si existe el ID
