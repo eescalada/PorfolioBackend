@@ -34,15 +34,13 @@ public class CEducacion {
     Seducacion sEducacion;
     
     @GetMapping("/lista")
-    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<List<Educacion>> list(){
         List<Educacion> list = sEducacion.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-   //@PreAuthorize("hasRole('ADMIN')")
+   @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<?> create (@RequestBody dtoEducacion dtoeducacion){
         if(StringUtils.isBlank(dtoeducacion.getNombreE())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -57,9 +55,8 @@ public class CEducacion {
         return new ResponseEntity(new Mensaje("Educacion agregada"), HttpStatus.OK);
     }
     
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
-    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody dtoEducacion dtoeducacion){
         //valido si existe el ID
         if(!sEducacion.existsById(id)){
@@ -83,7 +80,7 @@ public class CEducacion {
        
     }
     
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete (@PathVariable("id") int id){
         //valido si existe el ID
@@ -97,7 +94,6 @@ public class CEducacion {
     }
     
     @GetMapping("/detail/{id}")
-    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<Educacion> getById(@PathVariable("id") int id){
         if(!sEducacion.existsById(id)){
            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.BAD_REQUEST);

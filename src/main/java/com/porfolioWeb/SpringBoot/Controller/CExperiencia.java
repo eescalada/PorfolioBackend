@@ -32,15 +32,13 @@ public class CExperiencia {
     SExperiencia sExperiencia;
     
     @GetMapping("/lista")
-    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<List<Experiencia>> list(){
         List<Experiencia> list = sExperiencia.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-   //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<?> create (@RequestBody dtoExperiencia dtoexp){
         if(StringUtils.isBlank(dtoexp.getNombreE())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -55,9 +53,8 @@ public class CExperiencia {
         return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
     }
     
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
-    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody dtoExperiencia dtoexp){
         //valido si existe el ID
         if(!sExperiencia.existsById(id)){
@@ -81,7 +78,7 @@ public class CExperiencia {
        
     }
     
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete (@PathVariable("id") int id){
         //valido si existe el ID
@@ -95,7 +92,6 @@ public class CExperiencia {
     }
     
     @GetMapping("/detail/{id}")
-    //@CrossOrigin(origins = "https://frontendelisolesc.web.app")
     public ResponseEntity<Experiencia> getById(@PathVariable("id") int id){
         if(!sExperiencia.existsById(id)){
            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.BAD_REQUEST);
@@ -103,5 +99,4 @@ public class CExperiencia {
         Experiencia experiencia = sExperiencia.getOne(id).get();
         return new ResponseEntity(experiencia, HttpStatus.OK);
     }
-    
 }
